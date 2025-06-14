@@ -1,0 +1,49 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# User files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# VS folders
+.vs/
+
+# VS Code
+.vscode/
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+*.cache
+
+# JetBrains Rider
+.idea/
+
+# Databases
+*.mdf
+*.ldf
+
+# Backup files
+*.dbmdl
+*.jfm
+
+# Test results
+TestResults/
+
+# NCrunch
+.ncrunch*
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Azure Pipelines
+.env
+
+# JetBrains local history
+.localhistory/

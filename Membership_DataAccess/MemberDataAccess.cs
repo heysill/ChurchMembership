@@ -7,8 +7,8 @@ namespace Membership_DataAccess
     {
         //static IMember memberDataAccess = new InMemoryMemberDataAccess();
         //static IMember memberDataAccess = new JsonFileMemberDataAccess();
-        static IMember memberDataAccess = new TextFileMemberDataAccess();
-
+        //static IMember memberDataAccess = new TextFileMemberDataAccess();
+        static IMember memberDataAccess = new DBMembershipDataAccess();
 
         public List<Member> GetAllMembers()
         {

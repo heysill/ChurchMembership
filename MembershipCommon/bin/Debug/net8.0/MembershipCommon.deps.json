@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "MembershipCommon/1.0.0": {
+        "runtime": {
+          "MembershipCommon.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MembershipCommon/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

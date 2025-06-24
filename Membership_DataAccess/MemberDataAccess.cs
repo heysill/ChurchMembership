@@ -5,10 +5,10 @@ namespace Membership_DataAccess
 {
     public class MemberDataAccess
     {
-        static IMember memberDataAccess = new InMemoryMemberDataAccess();
+        //static IMember memberDataAccess = new InMemoryMemberDataAccess();
         //static IMember memberDataAccess = new JsonFileMemberDataAccess();
         //static IMember memberDataAccess = new TextFileMemberDataAccess();
-        //static IMember memberDataAccess = new DBMembershipDataAccess();
+        static IMember memberDataAccess = new DBMembershipDataAccess();
 
         public List<Member> GetAllMembers()
         {
@@ -23,6 +23,16 @@ namespace Membership_DataAccess
         public bool RemoveMember(string name)
         {
             return memberDataAccess.RemoveMember(name);
+        }
+
+        public bool UpdateMember(string oldName, Member updatedMember)
+        {
+            return memberDataAccess.UpdateMember(oldName, updatedMember);
+        }
+
+        public Member GetMember(string name)
+        {
+            return memberDataAccess.GetMember(name);
         }
 
     }

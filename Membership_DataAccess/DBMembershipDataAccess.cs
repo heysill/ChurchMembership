@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using MembershipCommon;
 
 namespace Membership_DataAccess
@@ -96,5 +94,35 @@ namespace Membership_DataAccess
 
             return affectedRows > 0;
         }
+
+        public bool UpdateMember(string oldName, Member updatedMember)
+        {
+            var updateStatement = @"
+                UPDATE Members 
+                SET Name = @NewName, 
+                    Age = @Age, 
+                    Birthdate = @Birthdate, 
+                    Address = @Address, 
+                    Gmail = @Gmail 
+                WHERE LTRIM(RTRIM(Name)) COLLATE SQL_Latin1_General_CP1_CI_AS = LTRIM(RTRIM(@OldName))";
+
+            SqlCommand command = new SqlCommand(updateStatement, sqlConnection);
+            command.Parameters.AddWithValue("@NewName", updatedMember.Name);
+            command.Parameters.AddWithValue("@Age", updatedMember.Age);
+            command.Parameters.AddWithValue("@Birthdate", updatedMember.Birthdate);
+            command.Parameters.AddWithValue("@Address", updatedMember.Address);
+            command.Parameters.AddWithValue("@Gmail", updatedMember.Gmail);
+            command.Parameters.AddWithValue("@OldName", oldName.Trim());
+
+            sqlConnection.Open();
+            int affectedRows = command.ExecuteNonQuery();
+            sqlConnection.Close();
+
+            return affectedRows > 0;
+        }
+
+
     }
+
+
 }

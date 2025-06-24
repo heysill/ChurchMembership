@@ -1,6 +1,5 @@
 ﻿using MembershipCommon;
 using Membership_DataAccess;
-using System.Collections.Generic;
 
 namespace Membership_BL
 {
@@ -31,6 +30,16 @@ namespace Membership_BL
         public List<Member> GetAllMembers()
         {
             return memberAccess.GetAllMembers();
+        }
+
+        public Member GetMember(string name)
+        {
+            return memberAccess.GetMember(name);
+        }
+
+        public bool UpdateMember(string oldName, Member updatedMember)
+        {
+            return memberAccess.UpdateMember(oldName, updatedMember);
         }
 
     }

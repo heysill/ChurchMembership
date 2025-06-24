@@ -5,7 +5,7 @@ namespace ChurchMembershipForm
 {
     internal class Program
     {
-        static string[] actions = new string[] { "[1] Add Member", "[2] View Members", "[3] Cancel Membership", "[4] Exit" };
+        static string[] actions = new string[] { "[1] Add Member", "[2] View Members", "[3] Cancel Membership", "[4] Update Member", "[5] Exit" };
         static BusinessLogic businessLogic = new BusinessLogic();
 
         static void Main(string[] args)
@@ -37,15 +37,20 @@ namespace ChurchMembershipForm
                         break;
 
                     case 4:
+                        UpdateMember();
+                        break;
+
+                    case 5:
                         Console.WriteLine("Exit");
                         return;
 
                     default:
-                        Console.WriteLine("Invalid choice. Please enter between 1 - 3 only");
+                        Console.WriteLine("Invalid choice. Please enter between 1 - 5 only");
                         break;
                 }
             }
         }
+
 
         static void DisplayOption()
         {
@@ -82,7 +87,6 @@ namespace ChurchMembershipForm
 
         static void ViewMembers()
         {
-
             var members = businessLogic.GetAllMembers();
 
             if (members.Count == 0)
@@ -95,14 +99,14 @@ namespace ChurchMembershipForm
 
             foreach (var member in members)
             {
-                string info = $"{member.Name} - {member.Age} - {member.Birthdate} - {member.Address} - {member.Gmail}";
-
+                string info = $"{member.Name.Trim()} - {member.Age.Trim()} - {member.Birthdate.Trim()} - {member.Address.Trim()} - {member.Gmail.Trim()}";
                 Console.WriteLine(info);
             }
 
             Console.WriteLine("");
             Console.WriteLine("----------------------------");
         }
+
 
         static void CancelMembership()
         {
@@ -130,5 +134,65 @@ namespace ChurchMembershipForm
             Console.WriteLine("---------------------");
         }
 
+        static void UpdateMember()
+        {
+            var members = businessLogic.GetAllMembers();
+
+            if (members.Count == 0)
+            {
+                Console.WriteLine("The List IS EMPTY\n");
+                return;
+            }
+
+            Console.Write("Enter the name of the member to update: ");
+            string oldName = Console.ReadLine()?.Trim();
+
+            var member = businessLogic.GetMember(oldName);
+
+            if (member == null)
+            {
+                Console.WriteLine("Member not found.\n");
+                return;
+            }
+
+            Console.Write($"New Name (current: {member.Name.Trim()}): ");
+            string newName = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(newName)) newName = member.Name.Trim();
+
+            Console.Write($"New Age (current: {member.Age.Trim()}): ");
+            string newAge = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(newAge)) newAge = member.Age.Trim();
+
+            Console.Write($"New Birthdate (current: {member.Birthdate.Trim()}): ");
+            string newBirthdate = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(newBirthdate)) newBirthdate = member.Birthdate.Trim();
+
+            Console.Write($"New Address (current: {member.Address.Trim()}): ");
+            string newAddress = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(newAddress)) newAddress = member.Address.Trim();
+
+            Console.Write($"New Gmail (current: {member.Gmail.Trim()}): ");
+            string newGmail = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(newGmail)) newGmail = member.Gmail.Trim();
+
+
+            var updatedMember = new Member
+            {
+                Name = newName,
+                Age = newAge,
+                Birthdate = newBirthdate,
+                Address = newAddress,
+                Gmail = newGmail
+            };
+
+            bool updated = businessLogic.UpdateMember(oldName, updatedMember);
+
+            Console.WriteLine(updated ? "Member successfully updated.\n" : "Update failed.\n");
+            Console.WriteLine("---------------------");
+        }
+
+
+
     }
 }
+

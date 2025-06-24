@@ -65,6 +65,26 @@ namespace Membership_DataAccess
             return _members;
         }
 
+        public bool UpdateMember(string oldName, Member updatedMember)
+        {
+            foreach (var member in _members)
+            {
+                if (member.Name == oldName)
+                {
+                    member.Name = updatedMember.Name;
+                    member.Age = updatedMember.Age;
+                    member.Birthdate = updatedMember.Birthdate;
+                    member.Address = updatedMember.Address;
+                    member.Gmail = updatedMember.Gmail;
+                    return true;
+                }
+            }
+            return false;
+        }
 
+        public Member GetMember(string name)
+        {
+            return _members.FirstOrDefault(m => m.Name.Trim().Equals(name.Trim(), System.StringComparison.OrdinalIgnoreCase));
+        }
     }
 }

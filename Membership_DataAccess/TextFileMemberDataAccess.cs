@@ -9,7 +9,7 @@ namespace Membership_DataAccess
     public class TextFileMemberDataAccess : IMember
     {
         List<Member> members = new List<Member>();
-        string filePath = "member.txt";
+        string filePath = "members.txt";
         public TextFileMemberDataAccess()
         {
             GetDataFromFile();
@@ -67,5 +67,30 @@ namespace Membership_DataAccess
         {
             return members;
         }
+
+        public bool UpdateMember(string oldName, Member updatedMember)
+        {
+            foreach (var member in members)
+            {
+                if (member.Name == oldName)
+                {
+                    member.Name = updatedMember.Name;
+                    member.Age = updatedMember.Age;
+                    member.Birthdate = updatedMember.Birthdate;
+                    member.Address = updatedMember.Address;
+                    member.Gmail = updatedMember.Gmail;
+
+                    WriteDataToFile();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public Member GetMember(string name)
+        {
+            return members.FirstOrDefault(m => m.Name.Trim().Equals(name.Trim(), StringComparison.OrdinalIgnoreCase));
+        }
+
     }
 }

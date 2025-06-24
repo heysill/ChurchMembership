@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MembershipCommon;
+﻿using MembershipCommon;
 
 namespace Membership_DataAccess
 {
@@ -12,5 +7,7 @@ namespace Membership_DataAccess
         List<Member> GetAll();
         void AddMember(Member member);
         bool RemoveMember(string name);
+        bool UpdateMember(string oldName, Member updatedMember);
+        Member GetMember(string name);
     }
 }

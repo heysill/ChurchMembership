@@ -9,7 +9,7 @@ namespace Membership_DataAccess
     public class JsonFileMemberDataAccess : IMember
     {
         List<Member> members = new List<Member>();
-        string filePath = "member.json";
+        string filePath = "members.json";
         public JsonFileMemberDataAccess()
         {
             ReadJsonDataFromFile();
@@ -52,6 +52,30 @@ namespace Membership_DataAccess
         public List<Member> GetAll()
         {
             return members;
+        }
+
+        public bool UpdateMember(string oldName, Member updatedMember)
+        {
+            foreach (var member in members)
+            {
+                if (member.Name == oldName)
+                {
+                    member.Name = updatedMember.Name;
+                    member.Age = updatedMember.Age;
+                    member.Birthdate = updatedMember.Birthdate;
+                    member.Address = updatedMember.Address;
+                    member.Gmail = updatedMember.Gmail;
+
+                    WriteJsonDataToFile();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public Member GetMember(string name)
+        {
+            return members.Find(m => m.Name.Trim().Equals(name.Trim(), StringComparison.OrdinalIgnoreCase));
         }
     }
 }

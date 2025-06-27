@@ -120,9 +120,9 @@ namespace Membership_DataAccess
 
             return affectedRows > 0;
         }
-
+        
+        }
 
     }
 
 
-}

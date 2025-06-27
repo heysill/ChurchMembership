@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MembershipCommon">
+      <HintPath>..\ChurchMembership\bin\Debug\net8.0\MembershipCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="Membership_BL">
+      <HintPath>..\ChurchMembership\bin\Debug\net8.0\Membership_BL.dll</HintPath>
+    </Reference>
+    <Reference Include="Membership_DataAccess">
+      <HintPath>..\ChurchMembership\bin\Debug\net8.0\Membership_DataAccess.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

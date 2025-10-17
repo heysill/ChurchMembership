@@ -18,13 +18,33 @@ namespace Membership_BL
                 Gmail = gmail
             };
 
-            memberAccess.AddMember(member);
+                memberAccess.AddMember(member);
+
+            
+                EmailService emailService = new EmailService();
+                string subject = "Membership Confirmed!";
+                string body = $"{DateTime.Now:yyyy-MM-dd hh:mm tt} : {member.Name} your officially added as a member at SCHCBC.\n";
+
+                emailService.SendEmail(subject, body);
+            
+
             return true;
         }
 
         public bool CancelMember(string name)
         {
-            return memberAccess.RemoveMember(name);
+            bool result = memberAccess.RemoveMember(name);
+
+            if (result)
+            {
+                EmailService emailService = new EmailService();
+                string subject = "Membership Cancelled!";
+                string body = $"{DateTime.Now:yyyy-MM-dd hh:mm tt} : {name} has requested to cancel the membership.\n";
+
+                emailService.SendEmail (subject, body);
+            }
+
+            return result;
         }
 
         public List<Member> GetAllMembers()
@@ -39,7 +59,18 @@ namespace Membership_BL
 
         public bool UpdateMember(string oldName, Member updatedMember)
         {
-            return memberAccess.UpdateMember(oldName, updatedMember);
+            bool result = memberAccess.UpdateMember(oldName, updatedMember);
+
+            if (result)
+            {
+                EmailService emailService = new EmailService();
+                string subject = "Membership Updated!";
+                string body = $"{DateTime.Now:yyyy-MM-dd hh:mm tt} : {oldName} membership has been updated.\n";
+
+                emailService.SendEmail(subject, body);
+            }
+
+            return result;
         }
 
     }

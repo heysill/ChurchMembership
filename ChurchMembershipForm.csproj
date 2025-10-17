@@ -8,13 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="MembershipAPI\**" />
     <Compile Remove="MembershipCommon\**" />
+    <Compile Remove="MembershipDesktop\**" />
     <Compile Remove="Membership_BL\**" />
     <Compile Remove="Membership_DataAccess\**" />
+    <EmbeddedResource Remove="MembershipAPI\**" />
     <EmbeddedResource Remove="MembershipCommon\**" />
+    <EmbeddedResource Remove="MembershipDesktop\**" />
     <EmbeddedResource Remove="Membership_BL\**" />
     <EmbeddedResource Remove="Membership_DataAccess\**" />
+    <None Remove="MembershipAPI\**" />
     <None Remove="MembershipCommon\**" />
+    <None Remove="MembershipDesktop\**" />
     <None Remove="Membership_BL\**" />
     <None Remove="Membership_DataAccess\**" />
   </ItemGroup>

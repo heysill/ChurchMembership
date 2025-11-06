@@ -1,14 +1,26 @@
-﻿using MimeKit;
-using MailKit.Net.Smtp;
+﻿using MailKit.Net.Smtp;
+using MailKit.Security;
+using Microsoft.Extensions.Configuration;
+using MimeKit;
 
 namespace Membership_BL
 {
-    class EmailService
+    public class EmailService
     {
+        private readonly IConfiguration _configuration;
+
+        public EmailService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public void SendEmail(string subject, string body)
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Admin", "churchmembership@example.com"));
+            message.From.Add(new MailboxAddress(
+                _configuration["EmailSettings:FromName"],
+                _configuration["EmailSettings:FromEmail"]
+            ));
             message.To.Add(new MailboxAddress("Member", "member@church.com"));
             message.Subject = subject;
             message.Body = new TextPart("plain")
@@ -18,15 +30,16 @@ namespace Membership_BL
 
             using (var client = new SmtpClient())
             {
-                var smtpHostn = "sandbox.smtp.mailtrap.io";
-                var smtpPort = 2525;
-                var tls = MailKit.Security.SecureSocketOptions.StartTls;
-                client.Connect(smtpHostn, smtpPort, tls);
+                client.Connect(
+                    _configuration["EmailSettings:SmtpHost"],
+                    int.Parse(_configuration["EmailSettings:SmtpPort"]),
+                    SecureSocketOptions.StartTls
+                );
 
-                var userName = "bb5ffd418562ef";
-                var password = "edb1763875bc06";
-
-                client.Authenticate(userName, password);
+                client.Authenticate(
+                    _configuration["EmailSettings:Username"],
+                    _configuration["EmailSettings:Password"]
+                );
 
                 client.Send(message);
                 client.Disconnect(true);
@@ -34,5 +47,3 @@ namespace Membership_BL
         }
     }
 }
-        
-

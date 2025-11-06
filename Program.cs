@@ -1,12 +1,14 @@
-﻿using Membership_BL;
+﻿using MailKit;
+using Membership_BL;
 using MembershipCommon;
+using Microsoft.Extensions.Configuration;
 
 namespace ChurchMembershipForm
 {
     internal class Program
     {
-        static string[] actions = new string[] { "[1] Add Member", "[2] View Members", "[3] Cancel Membership", "[4] Update Member", "[5] Exit" };
-        static BusinessLogic businessLogic = new BusinessLogic();
+        static string[] actions = new string[] { "[1] Add Member", "[2] View Members", "[3] Cancel Membership", "[4] Update Member", "[5] Exit" };    
+        private static IConfiguration configuration;
 
         static void Main(string[] args)
         {
@@ -78,15 +80,19 @@ namespace ChurchMembershipForm
             Console.Write("Gmail: ");
             string Gmail = Console.ReadLine();
 
-            BusinessLogic businessDataLogic = new BusinessLogic();
+            EmailService emailService = new EmailService(configuration);
+            BusinessLogic businessLogic = new BusinessLogic(emailService);
 
-            businessDataLogic.AddMember(Name, Age, Birthdate, Address, Gmail);
+            businessLogic.AddMember(Name, Age, Birthdate, Address, Gmail);
             Console.WriteLine("Successfully Added!\n");
             Console.WriteLine("----------------------------");
         }
 
         static void ViewMembers()
         {
+            EmailService emailService = new EmailService(configuration);
+            BusinessLogic businessLogic = new BusinessLogic(emailService);
+
             var members = businessLogic.GetAllMembers();
 
             if (members.Count == 0)
@@ -110,6 +116,9 @@ namespace ChurchMembershipForm
 
         static void CancelMembership()
         {
+            EmailService emailService = new EmailService(configuration);
+            BusinessLogic businessLogic = new BusinessLogic(emailService);
+
             var members = businessLogic.GetAllMembers();
 
             if (members.Count == 0)
@@ -136,6 +145,9 @@ namespace ChurchMembershipForm
 
         static void UpdateMember()
         {
+            EmailService emailService = new EmailService(configuration);
+            BusinessLogic businessLogic = new BusinessLogic(emailService);
+
             var members = businessLogic.GetAllMembers();
 
             if (members.Count == 0)

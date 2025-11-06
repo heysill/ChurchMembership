@@ -12,5 +12,19 @@
     "Birthdate": "2005-04-26",
     "Address": "South City",
     "Gmail": "heysill@gmail.com"
+  },
+  {
+    "Name": "Margarita Ponada",
+    "Age": "13",
+    "Birthdate": "2013-09-30",
+    "Address": "Dela Paz",
+    "Gmail": "margarita@example.com"
+  },
+  {
+    "Name": "jennifer ann",
+    "Age": "20",
+    "Birthdate": "2005-08-22",
+    "Address": "sto. nino",
+    "Gmail": "jnnfer@example.com"
   }
 ]

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Membership_DataAccess", "Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MembershipCommon", "MembershipCommon\MembershipCommon.csproj", "{3E92D2C1-B460-F91E-4FAE-16C9C3B54D7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MembershipAPI", "MembershipAPI\MembershipAPI.csproj", "{2182FBFF-C7C4-0E97-78B0-32B287E86571}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{3E92D2C1-B460-F91E-4FAE-16C9C3B54D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E92D2C1-B460-F91E-4FAE-16C9C3B54D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E92D2C1-B460-F91E-4FAE-16C9C3B54D7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2182FBFF-C7C4-0E97-78B0-32B287E86571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2182FBFF-C7C4-0E97-78B0-32B287E86571}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2182FBFF-C7C4-0E97-78B0-32B287E86571}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2182FBFF-C7C4-0E97-78B0-32B287E86571}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

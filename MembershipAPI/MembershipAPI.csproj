@@ -11,15 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="MembershipCommon">
-      <HintPath>..\ChurchMembership\bin\Debug\net8.0\MembershipCommon.dll</HintPath>
-    </Reference>
-    <Reference Include="Membership_BL">
-      <HintPath>..\ChurchMembership\bin\Debug\net8.0\Membership_BL.dll</HintPath>
-    </Reference>
-    <Reference Include="Membership_DataAccess">
-      <HintPath>..\ChurchMembership\bin\Debug\net8.0\Membership_DataAccess.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\MembershipCommon\MembershipCommon.csproj" />
+    <ProjectReference Include="..\Membership_BL\Membership_BL.csproj" />
+    <ProjectReference Include="..\Membership_DataAccess\Membership_DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

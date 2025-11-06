@@ -8,7 +8,12 @@ namespace MembershipAPI.Controllers
     [ApiController]
     public class MembersController : ControllerBase
     {
-        Membership_BL.BusinessLogic businessLogic = new Membership_BL.BusinessLogic();
+        private readonly Membership_BL.BusinessLogic _businessLogic;
+
+        public MembersController(Membership_BL.BusinessLogic businessLogic)
+        {
+            _businessLogic = businessLogic;
+        }
 
         [HttpGet("add")]
         public bool AddMember(string name, string age, string birthdate, string address, string gmail)
@@ -21,31 +26,31 @@ namespace MembershipAPI.Controllers
                 Address = address,
                 Gmail = gmail
             };
-            return businessLogic.AddMember(name, age, birthdate, address, gmail);
+            return _businessLogic.AddMember(name, age, birthdate, address, gmail);
         }
 
         [HttpDelete("cancel")]
         public bool CancelMember(string name)
         {
-            return businessLogic.CancelMember(name);
+            return _businessLogic.CancelMember(name);
         }
 
         [HttpGet("members")]
         public List<Member> GetAllMembers()
         {
-            return businessLogic.GetAllMembers();
+            return _businessLogic.GetAllMembers();
         }
 
         [HttpGet("member")]
         public Member GetMember(string name)
         {
-            return businessLogic.GetMember(name);
+            return _businessLogic.GetMember(name);
         }
 
         [HttpPatch("update")]
         public bool UpdateMember(string oldName, Member updatedMember)
         {
-            return businessLogic.UpdateMember(oldName, updatedMember);
+            return _businessLogic.UpdateMember(oldName, updatedMember);
         }
     }
 }
